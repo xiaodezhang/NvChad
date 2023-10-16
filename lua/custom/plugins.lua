@@ -81,44 +81,91 @@ local plugins = {
   },
 
   {
-    "phaazon/hop.nvim",
-    branch = "v2",
+    "nvim-treesitter/nvim-treesitter-context",
     lazy = false,
-    config = function()
-      local hop = require('hop')
-      local directions = require('hop.hint').HintDirection
-      vim.keymap.set('', 'f', function()
-        hop.hint_char1({ direction = directions.AFTER_CURSOR, current_line_only = true })
-      end, {remap=true})
-      vim.keymap.set('', 'F', function()
-        hop.hint_char1({ direction = directions.BEFORE_CURSOR, current_line_only = true })
-      end, {remap=true})
-      vim.keymap.set('', 't', function()
-        hop.hint_char1({ direction = directions.AFTER_CURSOR, current_line_only = true, hint_offset = -1 })
-      end, {remap=true})
-      vim.keymap.set('', 'T', function()
-        hop.hint_char1({ direction = directions.BEFORE_CURSOR, current_line_only = true, hint_offset = 1 })
-      end, {remap=true})
+  },
 
-      vim.keymap.set('', '<leader>w', function()
-        hop.hint_words()
-      end, {remap=true})
-
-      vim.keymap.set('', '<leader>c', function()
-        hop.hint_char1()
-      end, {remap=true})
-
-      vim.keymap.set('', '<leader>c2', function()
-        hop.hint_char2()
-      end, {remap=true})
-
-      hop.setup()
-    end,
+  {
+    'windwp/nvim-autopairs',
+    event = "InsertEnter",
+  },
+  {
+    'RRethy/vim-illuminate',
+    lazy = false,
+  },
+  {
+    'kevinhwang91/nvim-hlslens',
+    lazy = false,
+  },
+  {
+    'nvim-treesitter/nvim-treesitter-textobjects',
+    lazy = false,
   },
   {
     "equalsraf/neovim-gui-shim",
     lazy = false,
   },
+  {
+    "vim-scripts/a.vim",
+    lazy = false,
+  },
+  {
+    "mfussenegger/nvim-dap",
+    lazy = false,
+  },
+  {
+    'ggandor/leap.nvim',
+    lazy = false,
+    config = function()
+      require("leap").add_default_mappings()
+    end,
+  },
+  {
+    "ThePrimeagen/harpoon",
+    config = function()
+      require("harpoon").setup({
+        menu = {
+          width = vim.api.nvim_win_get_width(0) - 4
+        }
+      })
+    end,
+    lazy = false,
+  },
+  {
+    'gelguy/wilder.nvim',
+    lazy = false,
+    config = function()
+      local wilder = require('wilder')
+      wilder.setup({modes = {':', '/', '?'}})
+
+      wilder.set_option('pipeline', {
+        wilder.branch(
+          wilder.cmdline_pipeline(),
+          wilder.search_pipeline()
+        ),
+      })
+
+      wilder.set_option('renderer', wilder.wildmenu_renderer({
+        highlighter = wilder.basic_highlighter(),
+      }))
+    end,
+  },
+  {
+    'chentoast/marks.nvim',
+    lazy = false,
+    config = function()
+      require("marks").setup({
+        -- default_mappings = false,
+        mappings = {
+          toggle = "mm",
+          preview = 'mv',
+          next = 'mi',
+          prev = 'mo'
+        }
+      })
+    end,
+  },
+
 
 
   -- To make a plugin not be loaded

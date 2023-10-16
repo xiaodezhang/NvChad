@@ -17,9 +17,9 @@ M.treesitter = {
   },
   indent = {
     enable = true,
-    -- disable = {
-    --   "python"
-    -- },
+    disable = {
+      "python"
+    },
   },
 }
 
@@ -61,10 +61,10 @@ M.nvimtree = {
 
 -- project support in nvimtree
 M.nvimtree = {
-  respect_buf_cwd = true,
-  update_focused_file = {
-    update_root = true
-  },
+  -- respect_buf_cwd = true,
+  -- update_focused_file = {
+  --   update_root = true
+  -- },
 }
 
 -- nvim-ts-rainbow2 support in nvim-treesitter
