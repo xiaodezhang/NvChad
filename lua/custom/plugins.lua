@@ -96,6 +96,9 @@ local plugins = {
   {
     'kevinhwang91/nvim-hlslens',
     lazy = false,
+    config = function()
+      require("hlslens").setup()
+    end,
   },
   {
     'nvim-treesitter/nvim-treesitter-textobjects',
