@@ -237,7 +237,10 @@ local plugins = {
     end,
   },
 
-
+  {
+    "peterhoeg/vim-qml",
+    lazy = false,
+  },
 
   -- To make a plugin not be loaded
   -- {
