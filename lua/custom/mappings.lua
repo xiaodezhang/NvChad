@@ -15,31 +15,19 @@ M.general = {
     ["<C-Down>"] = { ": res -2 <CR>", "highlight", opts = { nowait = true } },
     ["<C-Left>"] = { ": vertical res +2 <CR>", "highlight", opts = { nowait = true } },
     ["<C-Right>"] = { ": vertical res -2 <CR>", "highlight", opts = { nowait = true } },
+
+    ["<F3>"] = { function() require('dapui').open() end },
+    ["<F4>"] = { function() require('dapui').close() end },
     ["<F5>"] = { function() require('dap').continue() end },
+    ["<F6>"] = { function() require('dap').toggle_breakpoint() end },
     ["<F10>"] = { function() require('dap').step_over() end },
     ["<F11>"] = { function() require('dap').step_into() end },
     ["<F12>"] = { function() require('dap').step_out() end },
-    ["<A-b>"] = { function() require('dap').toggle_breakpoint() end },
-    ["<A-o>"] = { function() require('dapui').open() end },
-    ["<A-c>"] = { function() require('dapui').close() end },
-    ["<A-l>"] = { function() require('dap').set_breakpoint(nil, nil, vim.fn.input('Log point message: ')) end },
-
-    ["<A-r>"] = { function() require('dap').run_last() end },
-    ["<A-h>"] = { function() require('dap.ui.widgets').hover() end },
-    ["<A-p>"] = { function() require('dap.ui.widgets').preview() end },
-    ["<A-f>"] = {
-      function() 
-        local widgets = require('dap.ui.widgets')
-        widgets.centered_float(widgets.frames) 
-      end 
-    },
-    ["<A-s>"] = {
-      function() 
-        local widgets = require('dap.ui.widgets')
-        widgets.centered_float(widgets.scopes) 
-      end 
-    },
   },
+  v = {
+    ["<C-c>"] = { "\"*y", "yank", opts = { nowait = true } },
+    ["<C-v>"] = { "\"*p", "paste", opts = { nowait = true } },
+  }
 }
 
 M.telescope = {
@@ -49,5 +37,38 @@ M.telescope = {
   },
 }
 -- more keybinds!
+--
+M.gitsigns = {
+  n = {
+    -- Actions
+    ["<A-r>"] = {
+      function()
+        require("gitsigns").reset_hunk()
+      end,
+      "Reset hunk",
+    },
+
+    ["<A-p>"] = {
+      function()
+        require("gitsigns").preview_hunk()
+      end,
+      "Preview hunk",
+    },
+
+    ["<A-b>"] = {
+      function()
+        package.loaded.gitsigns.blame_line()
+      end,
+      "Blame line",
+    },
+
+    ["<A-d>"] = {
+      function()
+        require("gitsigns").toggle_deleted()
+      end,
+      "Toggle deleted",
+    },
+  },
+}
 
 return M

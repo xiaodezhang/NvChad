@@ -347,6 +347,13 @@ local plugins = {
         desc = "Quickfix List (Trouble)",
       },
     },
+  },
+  {
+    "xiaodezhang/switch.nvim",
+    lazy = false,
+    config = function()
+      require("switch").setup()
+    end
   }
   -- To make a plugin not be loaded
   -- {
